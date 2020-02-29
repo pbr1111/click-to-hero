@@ -4,6 +4,7 @@
     "private": true,
     "dependencies": {
         "@capacitor/core": "1.5.0",
+        "@ion-phaser/react": "^1.2.1",
         "@ionic/react": "^5.0.0",
         "@ionic/react-router": "^5.0.0",
         "@testing-library/jest-dom": "^4.2.4",
@@ -19,6 +20,7 @@
         "i18next-xhr-backend": "^3.2.2",
         "ionicons": "^5.0.0",
         "node-sass": "^4.13.1",
+        "phaser": "^3.22.0",
         "react": "^16.12.0",
         "react-dom": "^16.12.0",
         "react-i18next": "^11.3.3",

@@ -1,0 +1,214 @@
+{
+    "anims": [
+        {
+            "key": "idle",
+            "type": "frame",
+            "frames": [
+                { "key": "minotaur", "frame": 0, "duration": 0 },
+                { "key": "minotaur", "frame": 1, "duration": 0 },
+                { "key": "minotaur", "frame": 2, "duration": 0 },
+                { "key": "minotaur", "frame": 3, "duration": 0 },
+                { "key": "minotaur", "frame": 4, "duration": 0 }
+            ],
+            "frameRate": 10,
+            "duration": 500,
+            "skipMissedFrames": true,
+            "delay": 0,
+            "repeat": 0,
+            "repeatDelay": 0,
+            "yoyo": false,
+            "showOnStart": false,
+            "hideOnComplete": false
+        },
+        {
+            "key": "move",
+            "type": "frame",
+            "frames": [
+                { "key": "minotaur", "frame": 9, "duration": 0 },
+                { "key": "minotaur", "frame": 10, "duration": 0 },
+                { "key": "minotaur", "frame": 11, "duration": 0 },
+                { "key": "minotaur", "frame": 12, "duration": 0 },
+                { "key": "minotaur", "frame": 13, "duration": 0 },
+                { "key": "minotaur", "frame": 14, "duration": 0 },
+                { "key": "minotaur", "frame": 15, "duration": 0 },
+                { "key": "minotaur", "frame": 16, "duration": 0 }
+            ],
+            "frameRate": 10,
+            "duration": 800,
+            "skipMissedFrames": true,
+            "delay": 0,
+            "repeat": 0,
+            "repeatDelay": 0,
+            "yoyo": false,
+            "showOnStart": false,
+            "hideOnComplete": false
+        },
+        {
+            "key": "taunt",
+            "type": "frame",
+            "frames": [
+                { "key": "minotaur", "frame": 18, "duration": 0 },
+                { "key": "minotaur", "frame": 19, "duration": 0 },
+                { "key": "minotaur", "frame": 20, "duration": 0 },
+                { "key": "minotaur", "frame": 21, "duration": 0 },
+                { "key": "minotaur", "frame": 22, "duration": 0 }
+            ],
+            "frameRate": 10,
+            "duration": 500,
+            "skipMissedFrames": true,
+            "delay": 0,
+            "repeat": 0,
+            "repeatDelay": 0,
+            "yoyo": false,
+            "showOnStart": false,
+            "hideOnComplete": false
+        },
+        {
+            "key": "attack1",
+            "type": "frame",
+            "frames": [
+                { "key": "minotaur", "frame": 27, "duration": 0 },
+                { "key": "minotaur", "frame": 28, "duration": 0 },
+                { "key": "minotaur", "frame": 29, "duration": 0 },
+                { "key": "minotaur", "frame": 30, "duration": 0 },
+                { "key": "minotaur", "frame": 31, "duration": 0 },
+                { "key": "minotaur", "frame": 32, "duration": 0 },
+                { "key": "minotaur", "frame": 33, "duration": 0 },
+                { "key": "minotaur", "frame": 34, "duration": 0 },
+                { "key": "minotaur", "frame": 35, "duration": 0 }
+            ],
+            "frameRate": 10,
+            "duration": 900,
+            "skipMissedFrames": true,
+            "delay": 0,
+            "repeat": 0,
+            "repeatDelay": 0,
+            "yoyo": false,
+            "showOnStart": false,
+            "hideOnComplete": false
+        },
+        {
+            "key": "attack2",
+            "type": "frame",
+            "frames": [
+                { "key": "minotaur", "frame": 36, "duration": 0 },
+                { "key": "minotaur", "frame": 37, "duration": 0 },
+                { "key": "minotaur", "frame": 38, "duration": 0 },
+                { "key": "minotaur", "frame": 39, "duration": 0 },
+                { "key": "minotaur", "frame": 40, "duration": 0 }
+            ],
+            "frameRate": 10,
+            "duration": 500,
+            "skipMissedFrames": true,
+            "delay": 0,
+            "repeat": 0,
+            "repeatDelay": 0,
+            "yoyo": false,
+            "showOnStart": false,
+            "hideOnComplete": false
+        },
+        {
+            "key": "attack3",
+            "type": "frame",
+            "frames": [
+                { "key": "minotaur", "frame": 45, "duration": 0 },
+                { "key": "minotaur", "frame": 46, "duration": 0 },
+                { "key": "minotaur", "frame": 47, "duration": 0 },
+                { "key": "minotaur", "frame": 48, "duration": 0 },
+                { "key": "minotaur", "frame": 49, "duration": 0 },
+                { "key": "minotaur", "frame": 50, "duration": 0 }
+            ],
+            "frameRate": 10,
+            "duration": 900,
+            "skipMissedFrames": true,
+            "delay": 0,
+            "repeat": 0,
+            "repeatDelay": 0,
+            "yoyo": false,
+            "showOnStart": false,
+            "hideOnComplete": false
+        },
+        {
+            "key": "attack4",
+            "type": "frame",
+            "frames": [
+                { "key": "minotaur", "frame": 54, "duration": 0 },
+                { "key": "minotaur", "frame": 55, "duration": 0 },
+                { "key": "minotaur", "frame": 56, "duration": 0 },
+                { "key": "minotaur", "frame": 57, "duration": 0 },
+                { "key": "minotaur", "frame": 58, "duration": 0 },
+                { "key": "minotaur", "frame": 59, "duration": 0 },
+                { "key": "minotaur", "frame": 60, "duration": 0 },
+                { "key": "minotaur", "frame": 61, "duration": 0 },
+                { "key": "minotaur", "frame": 62, "duration": 0 }
+            ],
+            "frameRate": 10,
+            "duration": 300,
+            "skipMissedFrames": true,
+            "delay": 0,
+            "repeat": 0,
+            "repeatDelay": 0,
+            "yoyo": false,
+            "showOnStart": false,
+            "hideOnComplete": false
+        },
+        {
+            "key": "damage1",
+            "type": "frame",
+            "frames": [
+                { "key": "minotaur", "frame": 63, "duration": 0 },
+                { "key": "minotaur", "frame": 64, "duration": 0 },
+                { "key": "minotaur", "frame": 65, "duration": 0 }
+            ],
+            "frameRate": 10,
+            "duration": 300,
+            "skipMissedFrames": true,
+            "delay": 0,
+            "repeat": 0,
+            "repeatDelay": 0,
+            "yoyo": false,
+            "showOnStart": false,
+            "hideOnComplete": false
+        },
+        {
+            "key": "damage2",
+            "type": "frame",
+            "frames": [
+                { "key": "minotaur", "frame": 72, "duration": 0 },
+                { "key": "minotaur", "frame": 73, "duration": 0 },
+                { "key": "minotaur", "frame": 74, "duration": 0 }
+            ],
+            "frameRate": 10,
+            "duration": 600,
+            "skipMissedFrames": true,
+            "delay": 0,
+            "repeat": 0,
+            "repeatDelay": 0,
+            "yoyo": false,
+            "showOnStart": false,
+            "hideOnComplete": false
+        },
+        {
+            "key": "death",
+            "type": "frame",
+            "frames": [
+                { "key": "minotaur", "frame": 81, "duration": 0 },
+                { "key": "minotaur", "frame": 82, "duration": 0 },
+                { "key": "minotaur", "frame": 83, "duration": 0 },
+                { "key": "minotaur", "frame": 84, "duration": 0 },
+                { "key": "minotaur", "frame": 85, "duration": 0 },
+                { "key": "minotaur", "frame": 86, "duration": 0 }
+            ],
+            "frameRate": 10,
+            "duration": 600,
+            "skipMissedFrames": true,
+            "delay": 0,
+            "repeat": 0,
+            "repeatDelay": 0,
+            "yoyo": false,
+            "showOnStart": false,
+            "hideOnComplete": false
+        }
+    ],
+    "globalTimeScale": 1
+}

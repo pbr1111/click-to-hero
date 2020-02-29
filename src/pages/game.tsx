@@ -2,6 +2,7 @@ import { IonButton, IonContent, IonPage } from '@ionic/react';
 import React, { useCallback, useReducer } from 'react';
 import { Countdown } from '../components/countdown';
 import { GameReducer } from './game/game-reducer';
+import { Minotaur } from '../components/minotaur';
 import './game.scss';
 
 export type GameState = {
@@ -32,6 +33,7 @@ const Game: React.FC = () => {
                     }}
                 />
                 <h1>{state.clicks}</h1>
+                <Minotaur />
                 <IonButton onClick={addClicks(1)}>x1</IonButton>
                 <IonButton onClick={addClicks(10)}>x10</IonButton>
                 <IonButton onClick={addClicks(100)}>x100</IonButton>
