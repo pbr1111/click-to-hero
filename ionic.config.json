@@ -1,7 +1,7 @@
 {
-  "name": "click-to-hero",
-  "integrations": {
-    "capacitor": {}
-  },
-  "type": "react"
+    "name": "click-to-hero",
+    "integrations": {
+        "capacitor": {}
+    },
+    "type": "react"
 }
