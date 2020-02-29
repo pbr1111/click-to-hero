@@ -1,11 +1,27 @@
-import React, { useRef } from 'react';
+import React, { useRef, forwardRef, Ref, useImperativeHandle } from 'react';
 import Phaser, { Game, Types, Scene, GameObjects } from 'phaser';
 import { IonPhaser } from '@ion-phaser/react';
 import './minotaur.scss';
 
-const Minotaur = () => {
-    const minotaur = useRef<GameObjects.Sprite>();
+type MinotaurAction =
+    | 'idle'
+    | 'move'
+    | 'attack1'
+    | 'attack2'
+    | 'attack3'
+    | 'attack4'
+    | 'damage1'
+    | 'damage2'
+    | 'death';
 
+export type MinotaurRef = {
+    do: (action: MinotaurAction) => void;
+};
+
+type MinotaurProps = {};
+
+const Minotaur = (_: MinotaurProps, ref: Ref<MinotaurRef>) => {
+    const minotaur = useRef<GameObjects.Sprite>();
     const game = useRef<Types.Core.GameConfig>({
         type: Phaser.AUTO,
         width: 96,
@@ -25,71 +41,15 @@ const Minotaur = () => {
         }
     });
 
-    return (
-        <div>
-            <IonPhaser game={game.current as Game} />
-            <button
-                onClick={() => {
-                    minotaur.current?.anims.play('idle');
-                }}>
-                IDLE
-            </button>
-            <button
-                onClick={() => {
-                    minotaur.current?.anims.play('move');
-                }}>
-                Move
-            </button>
-            <button
-                onClick={() => {
-                    minotaur.current?.anims.play('taunt');
-                }}>
-                Taunt
-            </button>
-            <button
-                onClick={() => {
-                    minotaur.current?.anims.play('attack1');
-                }}>
-                Attack1
-            </button>
-            <button
-                onClick={() => {
-                    minotaur.current?.anims.play('attack2');
-                }}>
-                Attack2
-            </button>
-            <button
-                onClick={() => {
-                    minotaur.current?.anims.play('attack3');
-                }}>
-                Attack3
-            </button>
-            <button
-                onClick={() => {
-                    minotaur.current?.anims.play('attack4');
-                }}>
-                Attack4
-            </button>
-            <button
-                onClick={() => {
-                    minotaur.current?.anims.play('damage1');
-                }}>
-                Damage1
-            </button>
-            <button
-                onClick={() => {
-                    minotaur.current?.anims.play('damage2');
-                }}>
-                Damage2
-            </button>
-            <button
-                onClick={() => {
-                    minotaur.current?.anims.play('death');
-                }}>
-                Death
-            </button>
-        </div>
-    );
+    useImperativeHandle(ref, () => ({
+        do: (action: MinotaurAction) => {
+            minotaur.current?.anims.play(action);
+        }
+    }));
+
+    return <IonPhaser game={game.current as Game} />;
 };
 
-export { Minotaur };
+const MinotaurForwardRef = forwardRef<MinotaurRef, MinotaurProps>(Minotaur);
+
+export { MinotaurForwardRef as Minotaur };

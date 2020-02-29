@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useState, memo } from 'react';
 import { useUpdateEffect } from '../hooks/use-update-effect';
 
 type CountdownProps = {
@@ -6,7 +6,7 @@ type CountdownProps = {
     onEnd?: () => void;
 };
 
-const Countdown: React.FC<CountdownProps> = React.memo(({ seconds, onEnd }: CountdownProps) => {
+const Countdown: React.FC<CountdownProps> = ({ seconds, onEnd }: CountdownProps) => {
     const [currentSeconds, setCurrentSeconds] = useState<number>(0);
 
     useEffect(() => {
@@ -33,6 +33,8 @@ const Countdown: React.FC<CountdownProps> = React.memo(({ seconds, onEnd }: Coun
     }, [currentSeconds]);
 
     return <>{currentSeconds}</>;
-});
+};
 
-export { Countdown };
+const CountdownMemo = memo(Countdown);
+
+export { CountdownMemo as Countdown };
