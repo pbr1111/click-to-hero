@@ -19,7 +19,7 @@ const Home: React.FC = () => {
 
                         <IonRow>
                             <IonCol>
-                                <IonButton color="primary" expand="block" routerLink="/game/run">
+                                <IonButton color="primary" expand="block" routerLink="/game">
                                     {t('start')}
                                 </IonButton>
                             </IonCol>

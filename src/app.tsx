@@ -4,6 +4,7 @@ import React, { lazy, Suspense } from 'react';
 import { Redirect, Route } from 'react-router';
 import { Loader } from './components/loader';
 import { LevelProvider } from './contexts/level-context';
+import { GameProvider } from './pages/game/game-context';
 import './config/i18n';
 
 /* Core CSS required for Ionic components to work properly */
@@ -33,7 +34,15 @@ const App: React.FC = () => (
                     <IonRouterOutlet>
                         <Route exact path="/" render={() => <Redirect to="/home" />} />
                         <Route exact path="/home" component={HomePage} />
-                        <Route path="/game" component={GamePage} />
+                        <Route
+                            exact
+                            path="/game"
+                            render={() => (
+                                <GameProvider>
+                                    <GamePage />
+                                </GameProvider>
+                            )}
+                        />
                     </IonRouterOutlet>
                 </IonReactRouter>
             </LevelProvider>

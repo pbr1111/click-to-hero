@@ -28,7 +28,6 @@ export const GameContextReducer = (
             const { seconds } = action;
             return {
                 ...initialState,
-                state: 'running',
                 seconds
             };
         }
@@ -36,7 +35,6 @@ export const GameContextReducer = (
             const { seconds } = state;
             return {
                 ...initialState,
-                state: 'restarting',
                 seconds
             };
         }

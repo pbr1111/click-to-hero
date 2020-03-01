@@ -1,18 +1,27 @@
-import React, { lazy } from 'react';
-import { IonRouterOutlet } from '@ionic/react';
-import { Route } from 'react-router';
-import { GameProvider } from './game/game-context';
+import React from 'react';
+import GameRun from './game/game-run';
+import { useGameContext, useGameContextActions } from './game/game-context';
+import GameEnd from './game/game-end';
+import { IonPage, IonContent, useIonViewWillEnter } from '@ionic/react';
 
-const GameRun = lazy(() => import('./game/game-run'));
-const GameEnd = lazy(() => import('./game/game-end'));
+const Game: React.FC = () => {
+    const { state, seconds } = useGameContext();
+    const { startGame } = useGameContextActions();
 
-const Game: React.FC = () => (
-    <GameProvider>
-        <IonRouterOutlet>
-            <Route exact path="/game/run" component={GameRun} />
-            <Route exact path="/game/end" component={GameEnd} />
-        </IonRouterOutlet>
-    </GameProvider>
-);
+    useIonViewWillEnter(() => {
+        startGame();
+    }, [startGame]);
 
+    return (
+        <IonPage>
+            <IonContent>
+                {state === 'running' && seconds ? (
+                    <GameRun />
+                ) : state === 'ended' ? (
+                    <GameEnd />
+                ) : null}
+            </IonContent>
+        </IonPage>
+    );
+};
 export default Game;

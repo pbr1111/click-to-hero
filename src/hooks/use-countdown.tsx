@@ -1,11 +1,7 @@
-import { useEffect, useState, Dispatch, SetStateAction, useRef } from 'react';
+import { useEffect, useState } from 'react';
 
-const useCountdown = (
-    initialSeconds: number,
-    onEnd: () => void
-): [number | undefined, Dispatch<SetStateAction<number | undefined>>] => {
-    const [currentSeconds, setCurrentSeconds] = useState<number | undefined>(initialSeconds);
-    const onEndRef = useRef<() => void>(onEnd);
+const useCountdown = (initialSeconds: number): number | undefined => {
+    const [currentSeconds, setCurrentSeconds] = useState<number | undefined>();
 
     useEffect(() => {
         if (initialSeconds) {
@@ -26,17 +22,7 @@ const useCountdown = (
         }
     }, [initialSeconds]);
 
-    useEffect(() => {
-        if (currentSeconds === 0) {
-            onEndRef.current?.();
-        }
-    }, [currentSeconds]);
-
-    useEffect(() => {
-        onEndRef.current = onEnd;
-    }, [onEnd]);
-
-    return [currentSeconds, setCurrentSeconds];
+    return currentSeconds;
 };
 
 export { useCountdown };
