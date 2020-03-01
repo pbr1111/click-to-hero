@@ -4,5 +4,6 @@
     "multiplier": "x{{value}}",
     "restartLevel": "Restart",
     "nextLevel": "Next level",
-    "endGame": "End game"
+    "endGame": "End game",
+    "home": "Home"
 }

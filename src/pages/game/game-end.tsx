@@ -7,24 +7,15 @@ const GameEnd: React.FC = () => {
     const { t } = useTranslation('game');
     const { seconds, clicks } = useGameContext();
     const { restartCurrentGame, goToNextLevel } = useGameContextActions();
-
-    const onRestartLevel = useCallback(() => {
-        restartCurrentGame();
-    }, [restartCurrentGame]);
-
-    const onNextLevel = useCallback(async () => {
-        goToNextLevel();
-    }, [goToNextLevel]);
-
     return (
         <IonPage>
             <IonContent>
                 <p>{t('totalTime', { seconds: seconds })}</p>
                 <p>{t('totalClicks', { clicks: clicks })}</p>
 
-                <IonButton onClick={onRestartLevel}>{t('restartLevel')}</IonButton>
-                <IonButton onClick={onNextLevel}>{t('nextLevel')}</IonButton>
-                <IonButton routerLink="/home">{t('nextLevel')}</IonButton>
+                <IonButton onClick={restartCurrentGame}>{t('restartLevel')}</IonButton>
+                <IonButton onClick={goToNextLevel}>{t('nextLevel')}</IonButton>
+                <IonButton routerLink="/home">{t('home')}</IonButton>
             </IonContent>
         </IonPage>
     );

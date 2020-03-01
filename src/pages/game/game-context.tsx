@@ -19,6 +19,7 @@ export type GameContextState = {
 };
 
 type GameContextActionsState = {
+    startGame: () => void;
     addClicks: (numClicks: number) => void;
     goToNextLevel: () => void;
     restartCurrentGame: () => void;
@@ -50,6 +51,11 @@ const GameProvider: React.FC<GameProviderProps> = ({ children }: GameProviderPro
         dispatch({ type: 'START_GAME', seconds });
     }, [level]);
 
+    const startGame = useCallback(() => {
+        const seconds = generateDifficultyLevelSeconds(level);
+        dispatch({ type: 'START_GAME', seconds });
+    }, []);
+
     const addClicks = useCallback((numClicks: number) => {
         dispatch({ type: 'ADD_CLICKS', value: numClicks });
     }, []);
@@ -77,6 +83,7 @@ const GameProvider: React.FC<GameProviderProps> = ({ children }: GameProviderPro
     return (
         <GameContextActions.Provider
             value={{
+                startGame,
                 addClicks,
                 goToNextLevel,
                 restartCurrentGame,

@@ -1,5 +1,5 @@
-import React, { useCallback, useRef } from 'react';
-import { IonButton, IonPage, IonContent } from '@ionic/react';
+import React, { useCallback, useRef, useEffect } from 'react';
+import { IonButton, IonPage, IonContent, useIonViewDidEnter } from '@ionic/react';
 import { useTranslation } from 'react-i18next';
 import { Countdown } from '../../components/countdown';
 import { Minotaur, MinotaurAction, MinotaurRef } from '../../components/minotaur';
@@ -8,8 +8,12 @@ import { useGameContext, useGameContextActions } from './game-context';
 const GameRun: React.FC = () => {
     const { t } = useTranslation('game');
     const { seconds, clicks } = useGameContext();
-    const { addClicks, endGame } = useGameContextActions();
+    const { addClicks, endGame, startGame } = useGameContextActions();
     const minotaurRef = useRef<MinotaurRef>(null);
+
+    useIonViewDidEnter(() => {
+        startGame();
+    }, []);
 
     const onAddClicks = useCallback(
         (numClicks: number, action: MinotaurAction) => () => {
