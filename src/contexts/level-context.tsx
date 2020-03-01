@@ -1,7 +1,12 @@
-import React, { useState, useEffect, useCallback } from 'react';
-import { createContext, useContext, PropsWithChildren } from 'react';
-import { loadLastLevel, saveLastLevel } from '../utils/level-saver';
-import { Loader } from '../components/loader';
+import React, {
+    createContext,
+    PropsWithChildren,
+    useCallback,
+    useContext,
+    useEffect,
+    useState
+} from 'react';
+import { fetchLevelLoader, saveLastLevel } from '../utils/level-saver';
 
 type LevelContextState = {
     level?: number;
@@ -18,29 +23,26 @@ const LevelContextActions = createContext<Partial<LevelContextActionsState>>({})
 
 type LevelProviderProps = PropsWithChildren<{}>;
 
+const levelLoader = fetchLevelLoader();
+
 const LevelProvider: React.FC<LevelProviderProps> = ({ children }: LevelProviderProps) => {
     const [level, setLevel] = useState<number>();
 
+    const savedLevelValue = levelLoader.level.read();
+
     useEffect(() => {
-        const setLastLevel = async (): Promise<void> => {
-            const lastLevel = await loadLastLevel();
-            setLevel(lastLevel ?? 1);
-        };
-        setLastLevel();
-    }, []);
+        setLevel(savedLevelValue ?? 1);
+    }, [savedLevelValue]);
 
     const nextLevel = useCallback(async () => {
         const newLevel = level! + 1;
         setLevel(newLevel);
         await saveLastLevel(newLevel);
-        console.log(newLevel);
     }, [level]);
 
     return (
         <LevelContextActions.Provider value={{ nextLevel }}>
-            <LevelContext.Provider value={{ level }}>
-                {level === undefined ? <Loader /> : children}
-            </LevelContext.Provider>
+            <LevelContext.Provider value={{ level }}>{children}</LevelContext.Provider>
         </LevelContextActions.Provider>
     );
 };
