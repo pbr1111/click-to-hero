@@ -27,17 +27,17 @@ const GamePage = lazy(() => import('./pages/game'));
 
 const App: React.FC = () => (
     <IonApp>
-        <IonReactRouter>
-            <IonRouterOutlet>
-                <Suspense fallback={<Loader />}>
-                    <LevelProvider>
+        <Suspense fallback={<Loader />}>
+            <LevelProvider>
+                <IonReactRouter>
+                    <IonRouterOutlet>
                         <Route exact path="/" render={() => <Redirect to="/home" />} />
                         <Route exact path="/home" component={HomePage} />
                         <Route path="/game" component={GamePage} />
-                    </LevelProvider>
-                </Suspense>
-            </IonRouterOutlet>
-        </IonReactRouter>
+                    </IonRouterOutlet>
+                </IonReactRouter>
+            </LevelProvider>
+        </Suspense>
     </IonApp>
 );
 

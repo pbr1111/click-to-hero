@@ -1,7 +1,7 @@
 import React, { useCallback } from 'react';
 import { useTranslation } from 'react-i18next';
 import { useGameContext, useGameContextActions } from './game-context';
-import { IonButton } from '@ionic/react';
+import { IonButton, IonContent, IonPage } from '@ionic/react';
 
 const GameEnd: React.FC = () => {
     const { t } = useTranslation('game');
@@ -17,13 +17,16 @@ const GameEnd: React.FC = () => {
     }, [goToNextLevel]);
 
     return (
-        <>
-            <p>{t('totalTime', { seconds: seconds })}</p>
-            <p>{t('totalClicks', { clicks: clicks })}</p>
+        <IonPage>
+            <IonContent>
+                <p>{t('totalTime', { seconds: seconds })}</p>
+                <p>{t('totalClicks', { clicks: clicks })}</p>
 
-            <IonButton onClick={onRestartLevel}>{t('restartLevel')}</IonButton>
-            <IonButton onClick={onNextLevel}>{t('nextLevel')}</IonButton>
-        </>
+                <IonButton onClick={onRestartLevel}>{t('restartLevel')}</IonButton>
+                <IonButton onClick={onNextLevel}>{t('nextLevel')}</IonButton>
+                <IonButton routerLink="/home">{t('nextLevel')}</IonButton>
+            </IonContent>
+        </IonPage>
     );
 };
 

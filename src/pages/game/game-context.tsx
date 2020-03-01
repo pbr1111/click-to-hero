@@ -7,7 +7,7 @@ import React, {
     useEffect,
     useReducer
 } from 'react';
-import { useHistory } from 'react-router';
+import { useHistory, useLocation } from 'react-router';
 import { useLevelContext, useLevelContextActions } from '../../contexts/level-context';
 import { generateDifficultyLevelSeconds } from '../../utils/level-generator';
 import { GameContextReducer } from './game-context/game-context-reducer';
@@ -40,6 +40,7 @@ export const initialState: GameContextState = {
 
 const GameProvider: React.FC<GameProviderProps> = ({ children }: GameProviderProps) => {
     const history = useHistory();
+    const location = useLocation();
     const { level } = useLevelContext();
     const { nextLevel } = useLevelContextActions();
     const [state, dispatch] = useReducer(GameContextReducer, initialState);
@@ -66,9 +67,9 @@ const GameProvider: React.FC<GameProviderProps> = ({ children }: GameProviderPro
     }, []);
 
     useEffect(() => {
-        if (state.state === 'running') {
+        if (state.state === 'running' && location.pathname !== '/game/run') {
             history.push('/game/run');
-        } else if (state.state === 'ended') {
+        } else if (state.state === 'ended' && location.pathname !== '/game/end') {
             history.push('/game/end');
         }
     }, [state.state, history]);

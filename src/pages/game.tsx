@@ -8,16 +8,12 @@ const GameRun = lazy(() => import('./game/game-run'));
 const GameEnd = lazy(() => import('./game/game-end'));
 
 const Game: React.FC = () => (
-    <IonPage>
-        <IonContent className="ion-padding">
-            <GameProvider>
-                <IonRouterOutlet>
-                    <Route exact path="/game/run" component={GameRun} />
-                    <Route exact path="/game/end" component={GameEnd} />
-                </IonRouterOutlet>
-            </GameProvider>
-        </IonContent>
-    </IonPage>
+    <GameProvider>
+        <IonRouterOutlet>
+            <Route exact path="/game/run" component={GameRun} />
+            <Route exact path="/game/end" component={GameEnd} />
+        </IonRouterOutlet>
+    </GameProvider>
 );
 
 export default Game;
