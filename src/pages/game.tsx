@@ -1,13 +1,13 @@
 import { IonButton, IonContent, IonPage } from '@ionic/react';
-import React, { useCallback, useReducer, useRef, useEffect, memo } from 'react';
+import React, { useCallback, useReducer, useRef, useEffect } from 'react';
 import { Countdown } from '../components/countdown';
 import { GameReducer } from './game/game-reducer';
 import { Minotaur, MinotaurRef, MinotaurAction } from '../components/minotaur';
-import './game.scss';
 import { useTranslation } from 'react-i18next';
-import { useHistory } from 'react-router';
 import { generateDifficultyLevelSeconds } from '../utils/level-generator';
 import { Loader } from '../components/loader';
+import { useLevelContext, useLevelContextActions } from '../contexts/level-context';
+import './game.scss';
 
 export type GameState = {
     clicks: number;
@@ -15,26 +15,24 @@ export type GameState = {
     state: 'running' | 'ended';
 };
 
-type GameProps = {
-    seconds: number;
-};
-
 export const initialState: GameState = {
     clicks: 0,
     state: 'running'
 };
 
-const Game: React.FC<GameProps> = ({ seconds }: GameProps) => {
+const Game: React.FC = () => {
     const { t } = useTranslation('game');
+    const { level } = useLevelContext();
+    const { nextLevel } = useLevelContextActions();
     const minotaurRef = useRef<MinotaurRef>(null);
-    const history = useHistory();
     const [state, dispatch] = useReducer(GameReducer, initialState);
 
     useEffect(() => {
+        const seconds = generateDifficultyLevelSeconds(level);
         dispatch({ type: 'START_GAME', seconds });
-    }, [seconds]);
+    }, [level]);
 
-    const addClicks = useCallback(
+    const onAddClicks = useCallback(
         (numClicks: number, action: MinotaurAction) => () => {
             dispatch({ type: 'ADD_CLICKS', value: numClicks });
             return minotaurRef.current?.do(action);
@@ -42,21 +40,20 @@ const Game: React.FC<GameProps> = ({ seconds }: GameProps) => {
         [dispatch]
     );
 
-    const gameEnd = useCallback(async () => {
+    const onGameEnd = useCallback(async () => {
         dispatch({ type: 'END_GAME' });
         await minotaurRef.current?.do('death');
     }, [dispatch]);
 
-    const restartLevel = useCallback(() => {
+    const onRestartLevel = useCallback(() => {
         dispatch({ type: 'RESTART_GAME' });
     }, []);
 
-    const nextLevel = useCallback(() => {
-        // TODO: Move to level-generator
-        const seconds = generateDifficultyLevelSeconds();
-        history.push(`/game/${seconds}`);
+    const onNextLevel = useCallback(async () => {
+        // TODO
         dispatch({ type: 'RESTART_GAME' });
-    }, []);
+        await nextLevel();
+    }, [nextLevel]);
 
     return (
         <IonPage>
@@ -68,31 +65,31 @@ const Game: React.FC<GameProps> = ({ seconds }: GameProps) => {
                         {/* TODO: Move to components */}
                         {state.state === 'running' ? (
                             <>
-                                <Countdown seconds={state.seconds} onEnd={gameEnd} />
+                                <Countdown seconds={state.seconds} onEnd={onGameEnd} />
                                 <h1>{state.clicks}</h1>
                                 <Minotaur ref={minotaurRef} />
 
-                                <IonButton onClick={addClicks(1, 'attack3')}>
+                                <IonButton onClick={onAddClicks(1, 'attack3')}>
                                     {t('multiplier', { value: 1 })}
                                 </IonButton>
-                                <IonButton onClick={addClicks(10, 'attack2')}>
+                                <IonButton onClick={onAddClicks(10, 'attack2')}>
                                     {t('multiplier', { value: 10 })}
                                 </IonButton>
-                                <IonButton onClick={addClicks(100, 'attack1')}>
+                                <IonButton onClick={onAddClicks(100, 'attack1')}>
                                     {t('multiplier', { value: 100 })}
                                 </IonButton>
-                                <IonButton onClick={addClicks(1000, 'attack4')}>
+                                <IonButton onClick={onAddClicks(1000, 'attack4')}>
                                     {t('multiplier', { value: 1000 })}
                                 </IonButton>
-                                <IonButton onClick={gameEnd}>{t('endGame')}</IonButton>
+                                <IonButton onClick={onGameEnd}>{t('endGame')}</IonButton>
                             </>
                         ) : state.state === 'ended' ? (
                             <>
-                                <p>{t('totalTime', { seconds })}</p>
+                                <p>{t('totalTime', { seconds: state.seconds })}</p>
                                 <p>{t('totalClicks', { clicks: state.clicks })}</p>
 
-                                <IonButton onClick={restartLevel}>{t('restartLevel')}</IonButton>
-                                <IonButton onClick={nextLevel}>{t('nextLevel')}</IonButton>
+                                <IonButton onClick={onRestartLevel}>{t('restartLevel')}</IonButton>
+                                <IonButton onClick={onNextLevel}>{t('nextLevel')}</IonButton>
                             </>
                         ) : null}
                     </>

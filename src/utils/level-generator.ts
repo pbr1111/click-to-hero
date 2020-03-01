@@ -1,4 +1,3 @@
-export const generateDifficultyLevelSeconds = () => {
-    //TODO: Read storage
-    return 60;
+export const generateDifficultyLevelSeconds = (level?: number) => {
+    return (level || 1) * 2;
 };
