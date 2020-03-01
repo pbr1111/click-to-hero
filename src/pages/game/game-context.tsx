@@ -54,7 +54,7 @@ const GameProvider: React.FC<GameProviderProps> = ({ children }: GameProviderPro
     const startGame = useCallback(() => {
         const seconds = generateDifficultyLevelSeconds(level);
         dispatch({ type: 'START_GAME', seconds });
-    }, []);
+    }, [level]);
 
     const addClicks = useCallback((numClicks: number) => {
         dispatch({ type: 'ADD_CLICKS', value: numClicks });
@@ -78,7 +78,7 @@ const GameProvider: React.FC<GameProviderProps> = ({ children }: GameProviderPro
         } else if (state.state === 'ended' && location.pathname !== '/game/end') {
             history.push('/game/end');
         }
-    }, [state.state, history]);
+    }, [state.state, history, location.pathname]);
 
     return (
         <GameContextActions.Provider

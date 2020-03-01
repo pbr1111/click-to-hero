@@ -1,5 +1,5 @@
 import React, { lazy } from 'react';
-import { IonContent, IonPage, IonRouterOutlet } from '@ionic/react';
+import { IonRouterOutlet } from '@ionic/react';
 import { Route } from 'react-router';
 import { GameProvider } from './game/game-context';
 import './game.scss';

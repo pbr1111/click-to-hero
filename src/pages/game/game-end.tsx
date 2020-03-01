@@ -1,4 +1,4 @@
-import React, { useCallback } from 'react';
+import React from 'react';
 import { useTranslation } from 'react-i18next';
 import { useGameContext, useGameContextActions } from './game-context';
 import { IonButton, IonContent, IonPage } from '@ionic/react';
