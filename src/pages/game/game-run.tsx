@@ -1,13 +1,13 @@
-import React, { useCallback, useRef } from 'react';
+import React, { useCallback, useRef, useEffect } from 'react';
 import { IonButton, IonPage, IonContent, useIonViewWillEnter } from '@ionic/react';
 import { useTranslation } from 'react-i18next';
-import { Countdown } from '../../components/countdown';
 import { Minotaur, MinotaurAction, MinotaurRef } from '../../components/minotaur';
 import { useGameContext, useGameContextActions } from './game-context';
+import { useCountdown } from '../../hooks/use-countdown';
 
 const GameRun: React.FC = () => {
     const { t } = useTranslation('game');
-    const { seconds, clicks } = useGameContext();
+    const { seconds, clicks, state } = useGameContext();
     const { addClicks, endGame, startGame } = useGameContextActions();
     const minotaurRef = useRef<MinotaurRef>(null);
 
@@ -28,10 +28,18 @@ const GameRun: React.FC = () => {
         endGame();
     }, [endGame]);
 
+    const [countdown, setCountdown] = useCountdown(seconds, onGameEnd);
+
+    useEffect(() => {
+        if (state === 'restarting') {
+            setCountdown(seconds);
+        }
+    }, [seconds, state, setCountdown]);
+
     return (
         <IonPage>
             <IonContent>
-                <Countdown seconds={seconds} onEnd={onGameEnd} />
+                {countdown}
                 <h1>{clicks}</h1>
                 <Minotaur ref={minotaurRef} />
 

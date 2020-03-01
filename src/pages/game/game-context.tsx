@@ -15,7 +15,7 @@ import { GameContextReducer } from './game-context/game-context-reducer';
 export type GameContextState = {
     clicks: number;
     seconds: number;
-    state: 'running' | 'ended';
+    state: 'running' | 'ended' | 'restarting';
 };
 
 type GameContextActionsState = {
@@ -73,7 +73,10 @@ const GameProvider: React.FC<GameProviderProps> = ({ children }: GameProviderPro
     }, []);
 
     useEffect(() => {
-        if (state.state === 'running' && location.pathname !== '/game/run') {
+        if (
+            (state.state === 'running' || state.state === 'restarting') &&
+            location.pathname !== '/game/run'
+        ) {
             history.push('/game/run');
         } else if (state.state === 'ended' && location.pathname !== '/game/end') {
             history.push('/game/end');

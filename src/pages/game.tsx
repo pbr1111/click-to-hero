@@ -2,7 +2,6 @@ import React, { lazy } from 'react';
 import { IonRouterOutlet } from '@ionic/react';
 import { Route } from 'react-router';
 import { GameProvider } from './game/game-context';
-import './game.scss';
 
 const GameRun = lazy(() => import('./game/game-run'));
 const GameEnd = lazy(() => import('./game/game-end'));
