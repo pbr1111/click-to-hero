@@ -1,0 +1,30 @@
+import React, { useCallback } from 'react';
+import { useTranslation } from 'react-i18next';
+import { useGameContext, useGameContextActions } from './game-context';
+import { IonButton } from '@ionic/react';
+
+const GameEnd: React.FC = () => {
+    const { t } = useTranslation('game');
+    const { seconds, clicks } = useGameContext();
+    const { restartCurrentGame, goToNextLevel } = useGameContextActions();
+
+    const onRestartLevel = useCallback(() => {
+        restartCurrentGame();
+    }, [restartCurrentGame]);
+
+    const onNextLevel = useCallback(async () => {
+        goToNextLevel();
+    }, [goToNextLevel]);
+
+    return (
+        <>
+            <p>{t('totalTime', { seconds: seconds })}</p>
+            <p>{t('totalClicks', { clicks: clicks })}</p>
+
+            <IonButton onClick={onRestartLevel}>{t('restartLevel')}</IonButton>
+            <IonButton onClick={onNextLevel}>{t('nextLevel')}</IonButton>
+        </>
+    );
+};
+
+export default GameEnd;

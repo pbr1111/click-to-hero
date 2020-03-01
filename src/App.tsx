@@ -31,9 +31,9 @@ const App: React.FC = () => (
             <IonRouterOutlet>
                 <Suspense fallback={<Loader />}>
                     <LevelProvider>
-                        <Route path="/home" component={HomePage} exact />
-                        <Route path="/game" component={GamePage} exact />
                         <Route exact path="/" render={() => <Redirect to="/home" />} />
+                        <Route exact path="/home" component={HomePage} />
+                        <Route path="/game" component={GamePage} />
                     </LevelProvider>
                 </Suspense>
             </IonRouterOutlet>
