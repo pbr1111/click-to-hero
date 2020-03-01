@@ -1,10 +1,18 @@
 import { IonButton, IonCol, IonContent, IonGrid, IonPage, IonRow } from '@ionic/react';
-import React from 'react';
+import React, { useCallback } from 'react';
 import { useTranslation } from 'react-i18next';
+import { useHistory } from 'react-router';
+import { generateDifficultyLevelSeconds } from '../utils/level-generator';
 import './home.scss';
 
 const Home: React.FC = () => {
     const { t } = useTranslation('home');
+    const history = useHistory();
+
+    const loadGame = useCallback(() => {
+        const seconds = generateDifficultyLevelSeconds();
+        history.push(`/game/${seconds}`);
+    }, []);
 
     return (
         <IonPage className="home-page">
@@ -19,7 +27,7 @@ const Home: React.FC = () => {
 
                         <IonRow>
                             <IonCol>
-                                <IonButton color="primary" expand="block" routerLink="/game">
+                                <IonButton color="primary" expand="block" onClick={loadGame}>
                                     {t('start')}
                                 </IonButton>
                             </IonCol>
@@ -27,10 +35,7 @@ const Home: React.FC = () => {
 
                         <IonRow>
                             <IonCol>
-                                <IonButton
-                                    color="secondary"
-                                    expand="block"
-                                    routerLink="/game/survival">
+                                <IonButton color="secondary" expand="block">
                                     {t('survival')}
                                 </IonButton>
                             </IonCol>

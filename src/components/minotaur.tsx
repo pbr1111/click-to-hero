@@ -3,7 +3,7 @@ import Phaser, { Game, Types, Scene, GameObjects } from 'phaser';
 import { IonPhaser } from '@ion-phaser/react';
 import './minotaur.scss';
 
-type MinotaurAction =
+export type MinotaurAction =
     | 'idle'
     | 'move'
     | 'attack1'
@@ -15,7 +15,7 @@ type MinotaurAction =
     | 'death';
 
 export type MinotaurRef = {
-    do: (action: MinotaurAction) => void;
+    do: (action: MinotaurAction) => Promise<void>;
 };
 
 type MinotaurProps = {};
@@ -42,8 +42,16 @@ const Minotaur = (_: MinotaurProps, ref: Ref<MinotaurRef>) => {
     });
 
     useImperativeHandle(ref, () => ({
-        do: (action: MinotaurAction) => {
-            minotaur.current?.anims.play(action);
+        do: (action: MinotaurAction): Promise<void> => {
+            return new Promise<void>((resolve, reject) => {
+                const play = minotaur.current?.anims.play(action);
+                if (!play) {
+                    reject();
+                }
+                play?.once(Phaser.Animations.Events.SPRITE_ANIMATION_COMPLETE, () => {
+                    resolve();
+                });
+            });
         }
     }));
 

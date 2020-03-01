@@ -1,5 +1,4 @@
-import React, { useEffect, useState, memo } from 'react';
-import { useUpdateEffect } from '../hooks/use-update-effect';
+import React, { memo, useEffect, useState } from 'react';
 
 type CountdownProps = {
     seconds: number;
@@ -7,17 +6,19 @@ type CountdownProps = {
 };
 
 const Countdown: React.FC<CountdownProps> = ({ seconds, onEnd }: CountdownProps) => {
-    const [currentSeconds, setCurrentSeconds] = useState<number>(0);
+    const [currentSeconds, setCurrentSeconds] = useState<number>();
 
     useEffect(() => {
         if (seconds) {
             const interval = setInterval(() => {
                 setCurrentSeconds(value => {
-                    if (value <= 0) {
-                        clearInterval(interval);
-                        return 0;
+                    if (value) {
+                        if (value <= 1) {
+                            clearInterval(interval);
+                            return 0;
+                        }
+                        return value - 1;
                     }
-                    return value - 1;
                 });
             }, 1000);
             setCurrentSeconds(seconds);
@@ -26,11 +27,11 @@ const Countdown: React.FC<CountdownProps> = ({ seconds, onEnd }: CountdownProps)
         }
     }, [seconds]);
 
-    useUpdateEffect(() => {
+    useEffect(() => {
         if (currentSeconds === 0) {
             onEnd?.();
         }
-    }, [currentSeconds]);
+    }, [currentSeconds, onEnd]);
 
     return <>{currentSeconds}</>;
 };

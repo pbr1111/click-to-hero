@@ -1,0 +1,8 @@
+{
+    "totalTime": "Total time: {{seconds}}",
+    "totalClicks": "Total clicks: {{clicks}}",
+    "multiplier": "x{{value}}",
+    "restartLevel": "Restart",
+    "nextLevel": "Next level",
+    "endGame": "End game"
+}

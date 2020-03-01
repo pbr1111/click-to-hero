@@ -1,7 +1,8 @@
-import { IonApp, IonLoading, IonRouterOutlet } from '@ionic/react';
+import { IonApp, IonRouterOutlet } from '@ionic/react';
 import { IonReactRouter } from '@ionic/react-router';
 import React, { lazy, Suspense } from 'react';
 import { Redirect, Route } from 'react-router';
+import { Loader } from './components/loader';
 import './config/i18n';
 
 /* Core CSS required for Ionic components to work properly */
@@ -27,18 +28,17 @@ const App: React.FC = () => (
     <IonApp>
         <IonReactRouter>
             <IonRouterOutlet>
-                <Suspense
-                    fallback={
-                        <IonLoading
-                            isOpen
-                            showBackdrop={false}
-                            mode="ios"
-                            translucent
-                            spinner="crescent"
-                        />
-                    }>
+                <Suspense fallback={<Loader />}>
                     <Route path="/home" component={HomePage} exact />
-                    <Route path="/game" component={GamePage} exact />
+                    <Route
+                        path="/game/:seconds"
+                        render={({
+                            match: {
+                                params: { seconds }
+                            }
+                        }) => <GamePage seconds={seconds} />}
+                        exact
+                    />
                     <Route exact path="/" render={() => <Redirect to="/home" />} />
                 </Suspense>
             </IonRouterOutlet>
