@@ -1,0 +1,24 @@
+trigger:
+- master
+
+pool:
+  vmImage: 'macOS-latest'
+
+steps:
+- script: yarn install --frozen-lockfile --production
+  displayName: 'Yarn install'
+
+- script: ionic build
+  displayName: 'Ionic web build'
+
+- script: npx cap add android
+  displayName: 'Add Android platform'
+
+- task: Gradle@2
+  inputs:
+    workingDirectory: android'
+    gradleWrapperFile: 'gradlew'
+    gradleOptions: '-Xmx3072m'
+    publishJUnitResults: false
+    tasks: 'assembleDebug'
+  
