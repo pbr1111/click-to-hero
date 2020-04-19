@@ -14,7 +14,7 @@ steps:
     path: $(YARN_CACHE_FOLDER)
   displayName: 'Cache Yarn packages'
 
-- script: yarn install --frozen-lockfile --production
+- script: yarn install --frozen-lockfile
   displayName: 'Yarn install'
 
 - script: ionic build
