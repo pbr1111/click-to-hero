@@ -17,11 +17,8 @@ steps:
 - script: yarn install --frozen-lockfile
   displayName: 'Yarn install'
 
-- script: ionic build
-  displayName: 'Ionic web build'
-
-- script: npx cap add android
-  displayName: 'Add Android platform'
+- script: yarn build-android:prod
+  displayName: 'Ionic build Android'
 
 - task: Gradle@2
   inputs:
