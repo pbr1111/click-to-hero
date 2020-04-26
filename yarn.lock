@@ -1035,6 +1035,11 @@
   dependencies:
     tslib "^1.9.0"
 
+"@capacitor/ios@^2.0.1":
+  version "2.0.1"
+  resolved "https://registry.yarnpkg.com/@capacitor/ios/-/ios-2.0.1.tgz#1f1cd3736dcf00373e3303d89a0164f2f168d24e"
+  integrity sha512-KzrWZAfLYe+eyJjvj1IjueIr0goigEREi4GkidKkGQdlP2EM4gHvzpkspD2L+HUP5c6dkReU5qkTzL2857TZ4w==
+
 "@cnakazawa/watch@^1.0.3":
   version "1.0.4"
   resolved "https://registry.yarnpkg.com/@cnakazawa/watch/-/watch-1.0.4.tgz#f864ae85004d0fcab6f50be9141c4da368d1656a"
@@ -11511,10 +11516,10 @@ typedarray@^0.0.6:
   resolved "https://registry.yarnpkg.com/typedarray/-/typedarray-0.0.6.tgz#867ac74e3864187b1d3d47d996a78ec5c8830777"
   integrity sha1-hnrHTjhkGHsdPUfZlqeOxciDB3c=
 
-typescript@^3.9.0-beta:
-  version "3.9.0-dev.20200419"
-  resolved "https://registry.yarnpkg.com/typescript/-/typescript-3.9.0-dev.20200419.tgz#09b709f3ba1ce74760512523dc5cd1aa251ee651"
-  integrity sha512-mSBTfYntTYz1la6JQ1UBFoW8keQA9p8HwKEPjGv2I5CgwT6xHjGu8BSs+QNpADS0l8n/q27r/UddI1uoI64v7Q==
+typescript@^3.8.3:
+  version "3.8.3"
+  resolved "https://registry.yarnpkg.com/typescript/-/typescript-3.8.3.tgz#409eb8544ea0335711205869ec458ab109ee1061"
+  integrity sha512-MYlEfn5VrLNsgudQTVJeNaQFUAI7DkhnOjdpAp4T+ku1TfQClewlbSuTVHiA+8skNBgaf02TL/kLOvig4y3G8w==
 
 unicode-canonical-property-names-ecmascript@^1.0.4:
   version "1.0.4"
